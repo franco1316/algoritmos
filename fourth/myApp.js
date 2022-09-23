@@ -1,11 +1,19 @@
-function fibonacci(n, previous = 1, current = 1, arrayFibonacci = [1]) {
-    if (current > n) return arrayFibonacci;
-    var temporal = previous;
+function sumEvenFibonacci(
+    n,
+    previous = 1,
+    current = 1,
+    sum = 0
+) {
+    if (n >= 4000000 || current > n) return sum;
+    if (current % 2 === 0) sum += current;
+    let temporal = previous;
     previous = current;
     current += temporal;
-    arrayFibonacci.push(previous)
-    return fibonacci(n, previous, current, arrayFibonacci);
+    return sumEvenFibonacci(n, previous, current, sum);
 }
-
-let show = fibonacci(1000)
-console.log(show)
+let test = sumEvenFibonacci(5);
+console.log(test); // 1 1 2 3 5 = 2
+test = sumEvenFibonacci(21);
+console.log(test); // 1 1 2 3 5 8 13 21 = 10
+test = sumEvenFibonacci(40);
+console.log(test); // 1 1 2 3 5 8 13 21 34 = 44
